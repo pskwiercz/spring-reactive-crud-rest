@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 @ComponentScan
 @Controller
-public class TicketmanagementApplication {
+public class TicketManagementApplication {
+
     @ResponseBody
     @RequestMapping("/")
     public String sayHello() {
@@ -20,7 +21,7 @@ public class TicketmanagementApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(TicketmanagementApplication.class, args);
+        SpringApplication.run(TicketManagementApplication.class, args);
     }
 }
 
