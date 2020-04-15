@@ -1,6 +1,5 @@
 package com.pskwiercz.restapp.reactive;
 
-import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -40,8 +39,12 @@ public class Server {
                 path("/user"),
                 nest(
                         accept(APPLICATION_JSON),
-                        route(GET("/{id}"), handler::getAllUsers)
-                                .andRoute(method(HttpMethod.GET), handler::getAllUsers)
-                ).andRoute(POST("/").and(contentType(APPLICATION_JSON)), handler::getAllUsers));
+                        route(GET("/"), handler::getAllUsers)
+                )
+                .andRoute(GET("/{id}"), handler::getUser)
+                .andRoute(POST("/").and(contentType(APPLICATION_JSON)), handler::createUser)
+                .andRoute(PUT("/").and(contentType(APPLICATION_JSON)), handler::updateUser)
+                .andRoute(DELETE("/{id}").and(contentType(APPLICATION_JSON)), handler::deleteUser)
+        );
     }
 }
